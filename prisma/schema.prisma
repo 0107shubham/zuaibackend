@@ -15,6 +15,8 @@ model Blog {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   imageUrl    String
   authorName  String
+  authorUrl   String
+  category    String
   heading     String
   description String
   date        DateTime @default(now())
