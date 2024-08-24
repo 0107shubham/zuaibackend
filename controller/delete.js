@@ -7,7 +7,7 @@ export const deletePost = async (req, res) => {
 
   try {
     await prisma.blog.delete({
-      where: { id: Number(id) },
+      where: { id },
     });
     res.status(204).send(); // 204 No Content indicates successful deletion
   } catch (error) {
