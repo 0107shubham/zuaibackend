@@ -6,11 +6,19 @@ export const deletePost = async (req, res) => {
   const { id } = req.params;
 
   try {
-    await prisma.blog.delete({
+    const deletedPost = await prisma.blog.delete({
       where: { id },
     });
-    res.status(204).json({ success: "Blog post deleted" }); // 204 No Content indicates successful deletion
+
+    res.status(200).json({
+      success: true,
+      message: `Blog post with ID ${id} has been deleted successfully.`,
+      data: deletedPost, // Optionally return the deleted post data
+    });
   } catch (error) {
-    res.status(400).json({ error: "Blog post could not be deleted" });
+    res.status(400).json({
+      success: false,
+      error: `Blog post with ID ${id} could not be deleted.`,
+    });
   }
 };
